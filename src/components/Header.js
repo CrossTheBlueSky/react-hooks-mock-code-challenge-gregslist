@@ -1,7 +1,11 @@
 import React from "react";
 import Search from "./Search";
+import NewListingForm from "./NewListingForm"
 
-function Header() {
+function Header({onSearch, onSort, onAdd}) {
+
+  const [visible, setVisible] = React.useState(false)
+
   return (
     <header>
       <h1>
@@ -10,7 +14,14 @@ function Header() {
         </span>
         gregslist
       </h1>
-      <Search />
+      <Search onSearch={onSearch} onSort={onSort} />
+      <select onChange={onSort}>
+        <option selected disabled>Sort Location By</option>
+        <option value="ascending">A-Z</option>
+        <option value="descending">Z-A</option>
+      </select>
+      <button onClick={()=>setVisible(!visible)}>Add New Listing</button>
+      {visible && <NewListingForm onAdd={onAdd} visible={setVisible}/>}
     </header>
   );
 }

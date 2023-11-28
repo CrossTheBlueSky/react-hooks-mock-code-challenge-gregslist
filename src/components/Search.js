@@ -1,9 +1,14 @@
 import React from "react";
 
-function Search() {
+function Search({onSearch}) {
+
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
+    console.log(e)
+    onSearch(e.target["search"].value)
+
   }
 
   return (
@@ -11,9 +16,8 @@ function Search() {
       <input
         type="text"
         id="search"
-        placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        placeholder="why doesn't the deliverable ask for a live search?"
+        //onChange={(e) => console.log(e.target.value)}
       />
       <button type="submit">🔍</button>
     </form>
